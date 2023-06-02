@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SOSOTECH Meta Tags -->
+    <meta name="description" content="Landing page template built with HTML and Bootstrap 4 for presenting training courses, classes, workshops and for convincing visitors to register using the form.">
+    <meta name="author" content="Inovatik">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+
+    <!-- Website Title -->  
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,700,700i&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/fontawesome-all.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/swiper.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/magnific-popup.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+	
+	<!-- Favicon  -->
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+<body data-spy="scroll" data-target=".fixed-top">
+    
+    <!-- Preloader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+    
+
+    <!-- Navigation -->
+     <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+
+        <!-- Text Logo - Use this if you don't have a graphic logo -->
+        <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Corso</a> -->
+
+        <!-- Image Logo -->
+        <a class="navbar-brand logo-image" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.svg') }}" alt="alternative"></a> 
+        <a style="text-decoration: none;" class="navbar-brand logo-image" href="{{ url_for('aboutus') }}"><h3 style="color: rgb(255, 0, 25);"><i>Angel-Palms</i></h3></a> 
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-awesome fas fa-bars"></span>
+            <span class="navbar-toggler-awesome fas fa-times"></span>
+        </button>
+        <!-- end of mobile menu toggle button -->
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="{{url_for('aboutus')}}">HOME</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{url_for('aboutus')}}"><span class="item-text">aboutus</span></a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle page-scroll" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">SERVICES</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{url_for('skillednursing')}}"><span class="item-text">Skilled Nursing Services</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{url_for('personalcare')}}"><span class="item-text">Personal Care Services</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{url_for('physicaltherapy')}}"><span class="item-text">Physical Therapy Services</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{url_for('respitecare')}}"><span class="item-text">Respite Care Services</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{url_for('dementiacare')}}"><span class="item-text">Dementia care Services</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{url_for('companioncare')}}"><span class="item-text">Companion Care Services</span></a>
+                    </div>
+                </li>
+
+                <!-- Dropdown Menu -->          
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle page-scroll" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">ABOUT US</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{url_for('mission')}}"><span class="item-text">Our Mission</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="vision"><span class="item-text">Our Vision</span></a>
+                    </div>
+                </li>
+                <!-- end of dropdown menu -->
+
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="{{url_for('contacts')}}">CONTACTS</a>
+                </li>
+            </ul>
+        </div>
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+
+    <!-- Instructor -->
+    <div id="instructor" class="basic-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img class="img-fluid" src="{{ url_for('static', filename='images/mission.jpg') }}" alt="alternative">
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h4>Our Mission...</h4>
+                        <p>At Angel-Palms Home Health Care, we are committed to making a difference in the lives of our patients, one visit at a time.</p>
+                       
+                        <p>Our mission is to provide exceptional and compassionate healthcare services to individuals in the comfort and familiarity of their own homes. We are dedicated to enhancing the overall well-being and quality of life for our patients, empowering them to live with independence, dignity, and utmost care.</p>
+                        <p>We strive to be the premier provider of home healthcare services by delivering personalized and comprehensive care that is tailored to meet the unique needs of each individual we serve. Our team of highly skilled and compassionate professionals is committed to building trusted relationships with our patients and their families, fostering a supportive and healing environment.</p>
+                        <p>Through continuous innovation and a commitment to excellence, we aim to exceed expectations and set new standards in home healthcare. We embrace a holistic approach, addressing not only physical health but also emotional, social, and spiritual well-being. By collaborating with our patients, their families, and the broader healthcare community, we actively contribute to creating healthier and happier lives.</p>
+                        <p>With integrity, empathy, and unwavering dedication, we make a positive difference in the lives of our patients, enabling them to thrive and enjoy the highest possible quality of life in the place they call home.</p>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-1 -->
+    <!-- end of instructor -->
+
+
+    <!-- Contact -->
+    <div id="contact" class="form-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h2>Contact Details</h2>
+                        <p>For registration questions please get in touch using the contact details below. For any questions use the form.</p>
+                        <h3>Main Office Location</h3>
+                        <ul class="list-unstyled li-space-lg">
+                            <li c lass="media">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="media-body">2431 Aloma Ave, Winter Park, FL 32792, US</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div class="media-body">+1 904 865 7777, &nbsp;&nbsp;<i class="fas fa-mobile-alt"></i>&nbsp; +1 407 300 9955</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-envelope"></i>
+                                <div class="media-body"><a class="light-gray" href="mailto:cafanwi@angelpalmshhcare.com">cafanwi@angelpalmshhcare.com</a> <i class="fas fa-globe"></i><a class="light-gray" href="#your-link">www.angelpalmshhcare.com</a></div>
+                            </li>
+                        </ul>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+
+                    <!-- Contact Form -->
+                    <form id="contactForm" data-toggle="validator" data-focus="false">
+                        <div class="form-group">
+                            <input type="text" class="form-control-input" id="cname" required>
+                            <label class="label-control" for="cname">Name</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control-input" id="cemail" required>
+                            <label class="label-control" for="cemail">Email</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control-textarea" id="cmessage" required></textarea>
+                            <label class="label-control" for="cmessage">Your message</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>I agree that the information provided is correct stated <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a> 
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control-submit-button">SUBMIT</button>
+                        </div>
+                        <div class="form-message">
+                            <div id="cmsgSubmit" class="h3 text-center hidden"></div>
+                        </div>
+                    </form>
+                    <!-- end of contact form -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of form-3 -->
+    <!-- end of contact -->
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="footer-col first">
+                        <h5>About Angel-Palms</h5>
+                        <p class="p-small">A passion for putting Clients Care first!</p>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-3">
+                    <div class="footer-col second">
+                        <h5>Links</h5>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body"><a href="#">Terms & Conditions</a></div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body"><a href="#">Privacy Policy</a></div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body"><a href="#">Article Details</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-3">
+                    <div class="footer-col third">
+                        <h5>Links</h5>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body"><a href="#">Article Details</a></div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body"><a href="#">Terms & Conditions</a></div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body"><a href="#">Privacy Policy</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-3">
+                    <div class="footer-col fourth">
+                        <h5>Social Media</h5>
+                        <p class="p-small">For news & updates follow us</p>
+                        <a href="#your-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#your-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#your-link">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                        <a href="#your-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#your-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#your-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div> 
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of footer -->  
+    <!-- end of footer -->
+
+    	
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script> <!-- Bootstrap framework -->
+    <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="{{ url_for('static', filename='js/jquery.countdown.min.js') }}"></script> <!-- The Final Countdown plugin for jQuery -->
+    <script src="{{ url_for('static', filename='js/swiper.min.js') }}"></script> <!-- Swiper for image and text sliders -->
+    <script src="{{ url_for('static', filename='js/jquery.magnific-popup.js') }}"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="{{ url_for('static', filename='js/validator.min.js') }}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script> <!-- Custom scripts -->
+    <script src="{{ url_for('static', filename='js/countdown.js') }}"></script> <!-- Countdown scripts -->
+</body>
+</html>
