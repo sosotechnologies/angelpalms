@@ -298,3 +298,8 @@ sudo certbot delete --cert-name collins.com
 ```
 
 ### IT trainers
+
+
+```
+ echo web: gunicorn app:app > Procfile
+```
