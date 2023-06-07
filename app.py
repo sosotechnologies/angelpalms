@@ -3,6 +3,7 @@ from flask import (
     Flask, flash, render_template, 
     redirect, request, session, url_for)
 from bson.objectid import ObjectId
+from forms import ContactForm
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -11,10 +12,15 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://mongo:27017/dev"
 app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    form = ContactForm()
+    if request.method == "POST" and form.validate_on_submit:
+        name = form.name.data 
+        flash(f"Thanks {name} for contacting us. We have successfully received your message")
+    return render_template("index.html", form=form)
 
 
 @app.route("/skillednursing")
@@ -66,4 +72,4 @@ def contacts():
     return render_template("contacts.html")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000) 
+    app.run(host="0.0.0.0", port=5000, debug=True) 
