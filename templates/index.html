@@ -103,6 +103,7 @@
             </ul>
         </div>
     </nav> <!-- end of navbar -->
+
     <!-- end of navigation -->
     <!-- Header -->
     <header id="header" class="header">
@@ -114,6 +115,21 @@
                             <span id="clock"></span>
                         </div>
                         <h1><i>Angel-Palms Home Health Care</i></h1>
+                            <!----Flash messages------>
+                            {% block message %}
+                            <div>
+                                {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <div class=flashes>
+                                    {% for message in messages %}
+                                    <p class="alert-success py-1" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">{{ message }}</p>
+                                    {% endfor %}
+                                    </div>
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                            {% endblock %}
+                            <!----end of flash messages---->
                         <h2 class="text-blue" id="demo"></h2>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
@@ -252,32 +268,18 @@
                 <div class="col-lg-6">
 
                     <!-- Contact Form -->
-                    <form id="contactForm" data-toggle="validator" data-focus="false">
-                        <div class="form-group">
-                            <input type="text" class="form-control-input" id="cname" required>
-                            <label class="label-control" for="cname">Name</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control-input" id="cemail" required>
-                            <label class="label-control" for="cemail">Email</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control-textarea" id="cmessage" required></textarea>
-                            <label class="label-control" for="cmessage">Your message</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
+                    {% from '_formhelpers.html' import render_field %}
+                    <form action="{{ url_for('index') }}" method="POST">
+                        {{ form.csrf_token }}
+                        {{ render_field(form.name, class="form-control", placeholder="Name", id="name")}}
+                        {{ render_field(form.email, class="form-control", placeholder="Email", id="email")}}
+                        {{ render_field(form.messages, class="form-control", placeholder="Message", id="messages", style='height: 100px;')}}
                         <div class="form-group checkbox">
-                            <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>I agree that the information provided is correct stated <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a> 
+                            <input type="checkbox" required>I've read and agree to Corso's written <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms & Conditions</a>
                             <div class="help-block with-errors"></div>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="form-control-submit-button">SUBMIT</button>
-                        </div>
-                        <div class="form-message">
-                            <div id="cmsgSubmit" class="h3 text-center hidden"></div>
-                        </div>
+                        <button class="btn btn-info w-100">Submit</button>
+                        
                     </form>
                     <!-- end of contact form -->
 
@@ -391,5 +393,9 @@
     <script src="{{ url_for('static', filename='js/validator.min.js') }}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script> <!-- Custom scripts -->
     <script src="{{ url_for('static', filename='js/countdown.js') }}"></script> <!-- Countdown scripts -->
+    <script src="{{ url_for('static', filename='js/email.js') }}"></script> <!-- Email.js scripts -->
+
+    <!-- Include the EmailJS library -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </body>
 </html>
