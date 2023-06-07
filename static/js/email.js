@@ -6,11 +6,11 @@ document.querySelector('form').addEventListener('submit', function(event) {
     var messages = document.getElementById('messages').value;
 
     // Send the email using EmailJS
-    emailjs.send('gmail', 'Sosotech', {
+    emailjs.send('service_e4dnmnd', 'template_k1nfxli', {
         from_name: name,
         from_email: email,
         from_messages: messages
-    }, '6hBKUU6AaZsir5LFX')
+    }, 'TJdbVMc2f9XKxogs9')
 
     .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
