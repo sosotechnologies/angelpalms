@@ -17,59 +17,67 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 @app.route("/", methods=["GET", "POST"])
 def index():
     form = ContactForm()
-    if request.method == "POST" and form.validate_on_submit:
-        name = form.name.data 
-        flash(f"Thanks {name} for contacting us. We have successfully received your message")
     return render_template("index.html", form=form)
 
 
 @app.route("/skillednursing")
 def skillednursing():
-    return render_template("skillednursing.html")
+    form = ContactForm()
+    return render_template("skillednursing.html", form=form)
 
 
 @app.route("/respitecare")
 def respitecare():
-    return render_template("respitecare.html")
+    form = ContactForm()
+    return render_template("respitecare.html", form=form)
 
 
 @app.route("/physicaltherapy")
 def physicaltherapy():
-    return render_template("physicaltherapy.html")
+    form = ContactForm()
+    return render_template("physicaltherapy.html", form=form)
 
 
 @app.route("/personalcare")
 def personalcare():
-    return render_template("personalcare.html")
+    form = ContactForm()
+    return render_template("personalcare.html", form=form)
 
 
 
 @app.route("/mission")
 def mission():
-    return render_template("mission.html")
+    form = ContactForm()
+    return render_template("mission.html", form=form)
+
 
 @app.route("/vision")
 def vision():
-    return render_template("vision.html")
+    form = ContactForm()
+    return render_template("vision.html", form=form)
 
 
 @app.route("/dementiacare")
 def dementiacare():
-    return render_template("dementiacare.html")
+    form = ContactForm()
+    return render_template("dementiacare.html", form=form)
 
 
 @app.route("/companioncare")
 def companioncare():
-    return render_template("companioncare.html")
+    form = ContactForm()
+    return render_template("companioncare.html", form=form)
 
 
 @app.route("/aboutus")
 def aboutus():
-    return render_template("aboutus.html")
+    form = ContactForm()
+    return render_template("aboutus.html", form=form)
 
 @app.route("/contacts")
 def contacts():
-    return render_template("contacts.html")
+    form = ContactForm()
+    return render_template("contacts.html", form=form)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True) 

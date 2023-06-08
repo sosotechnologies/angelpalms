@@ -30,7 +30,18 @@
 	
 	<!-- Favicon  -->
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init("Fm3kclIdYBzU6wf8j");
+    })();
+    </script>
+
 </head>
+
 <body data-spy="scroll" data-target=".fixed-top">
     
     <!-- Preloader -->
@@ -43,7 +54,7 @@
     </div>
     <!-- end of preloader -->
     
-
+    {% block navigation %}
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 
@@ -52,7 +63,7 @@
 
         <!-- Image Logo -->
         <a class="navbar-brand logo-image" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.svg') }}" alt="alternative"></a> 
-        <a style="text-decoration: none;" class="navbar-brand logo-image" href="{{ url_for('aboutus') }}"><h3 style="color: rgb(255, 0, 25);"><i>Angel-Palms</i></h3></a> 
+        <a style="text-decoration: none;" class="navbar-brand logo-image" href="{{ url_for('index') }}"><h3 style="color: rgb(255, 0, 25);"><i>Angel-Palms</i></h3></a> 
 
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +75,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="{{url_for('aboutus')}}">HOME</a>
+                    <a class="nav-link page-scroll" href="{{url_for('aboutus')}}">ABOUT US</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{url_for('aboutus')}}"><span class="item-text">aboutus</span></a>
                     </div>
@@ -88,7 +99,7 @@
 
                 <!-- Dropdown Menu -->          
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle page-scroll" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">ABOUT US</a>
+                    <a class="nav-link dropdown-toggle page-scroll" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">OUR GOAL</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{url_for('mission')}}"><span class="item-text">Our Mission</span></a>
                         <div class="dropdown-divider"></div>
@@ -103,8 +114,10 @@
             </ul>
         </div>
     </nav> <!-- end of navbar -->
-
     <!-- end of navigation -->
+    {% endblock %}
+
+    {% block header %}
     <!-- Header -->
     <header id="header" class="header">
         <div class="container">
@@ -115,21 +128,6 @@
                             <span id="clock"></span>
                         </div>
                         <h1><i>Angel-Palms Home Health Care</i></h1>
-                            <!----Flash messages------>
-                            {% block message %}
-                            <div>
-                                {% with messages = get_flashed_messages() %}
-                                {% if messages %}
-                                    <div class=flashes>
-                                    {% for message in messages %}
-                                    <p class="alert-success py-1" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">{{ message }}</p>
-                                    {% endfor %}
-                                    </div>
-                                {% endif %}
-                                {% endwith %}
-                            </div>
-                            {% endblock %}
-                            <!----end of flash messages---->
                         <h2 class="text-blue" id="demo"></h2>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
@@ -174,7 +172,10 @@
 
     </header> <!-- end of header -->
     <!-- end of header -->
+    {% endblock %}
 
+
+    {% block instructor %}
     <!-- Instructor -->
     <div id="instructor" class="basic-1">
         <div class="container">
@@ -193,11 +194,11 @@
         </div> <!-- end of container -->
     </div> <!-- end of basic-1 -->
     <!-- end of instructor -->
-
+    {% endblock %}
 
   
 
-
+{% block lightbox %}
     <!-- Details Lightbox -->
 	<div id="details-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
         <div class="container">
@@ -239,7 +240,9 @@
         </div> <!-- end of container -->
     </div> <!-- end of lightbox-basic -->
     <!-- end of details lightbox -->
+{% endblock %}
 
+{% block contact %}
     <!-- Contact -->
     <div id="contact" class="form-3">
         <div class="container">
@@ -271,25 +274,44 @@
                     {% from '_formhelpers.html' import render_field %}
                     <form action="{{ url_for('index') }}" method="POST">
                         {{ form.csrf_token }}
-                        {{ render_field(form.name, class="form-control", placeholder="Name", id="name")}}
+                        {{ render_field(form.name, class="form-control", placeholder="Name", id="username")}}
                         {{ render_field(form.email, class="form-control", placeholder="Email", id="email")}}
-                        {{ render_field(form.messages, class="form-control", placeholder="Message", id="messages", style='height: 100px;')}}
+                        {{ render_field(form.messages, class="form-control", placeholder="Message", id="message", style='height: 100px;')}}
                         <div class="form-group checkbox">
                             <input type="checkbox" required>I've read and agree to Corso's written <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms & Conditions</a>
                             <div class="help-block with-errors"></div>
                         </div>
-                        <button class="btn btn-info w-100">Submit</button>
+                        <button class="submit btn btn-info w-100" data-toggle="modal" data-target="#flashModal">Submit</button>
                         
                     </form>
                     <!-- end of contact form -->
-
+                    <!-- Modal -->
+                    <div class="modal fade" id="flashModal" tabindex="-1" role="dialog" aria-labelledby="flashModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="flashModalLabel">Message Sent!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                            <p>Thanks for contacting us. We have successfully received your message.</p>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
     </div> <!-- end of form-3 -->
     <!-- end of contact -->
+{% endblock %}
 
-
+{% block footer %}
     <!-- Footer -->
     <div class="footer">
         <div class="container">
@@ -366,8 +388,9 @@
         </div> <!-- end of container -->
     </div> <!-- end of footer -->  
     <!-- end of footer -->
+{% endblock %}
 
-
+{% block copyright %}
     <!-- Copyright -->
     <div class="copyright">
         <div class="container">
@@ -380,9 +403,11 @@
         </div> <!-- end of container -->
     </div> <!-- end of copyright --> 
     <!-- end of copyright -->
-    
+{% endblock %}    
     	
+{% block scripts %}
     <!-- Scripts -->
+
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script> <!-- Popper tooltip library for Bootstrap -->
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script> <!-- Bootstrap framework -->
@@ -393,9 +418,14 @@
     <script src="{{ url_for('static', filename='js/validator.min.js') }}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script> <!-- Custom scripts -->
     <script src="{{ url_for('static', filename='js/countdown.js') }}"></script> <!-- Countdown scripts -->
-    <script src="{{ url_for('static', filename='js/email.js') }}"></script> <!-- Email.js scripts -->
-
+    <script src="{{ url_for('static', filename='js/sendEmail.js') }}"></script> <!-- sendEmail scripts -->
     <!-- Include the EmailJS library -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    
+    
+    
+{% endblock %}
+
+    
 </body>
 </html>

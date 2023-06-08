@@ -756,6 +756,14 @@ input[type='checkbox'] {
 /*********************/
 /*    04. Header     */
 /*********************/
+.head {
+	position: relative;
+	padding-top: 6rem;
+	background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/header-background.jpg') center center no-repeat;
+	background-size: cover;
+	text-align: center;
+}
+
 .header {
 	position: relative;
 	padding-top: 8rem;
